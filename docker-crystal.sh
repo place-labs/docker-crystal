@@ -3,8 +3,13 @@
 set -o errexit
 set -o nounset
 
-# Naively extract the crystal version from shard.yml
-CRYSTAL_VERSION=`grep 'crystal:' shard.yml | awk '{print $2}'`
+if [ -f shard.yml ]; then
+  # Naively extract the crystal version from shard.yml
+  CRYSTAL_VERSION=`grep 'crystal:' shard.yml | awk '{print $2}'`
+else
+  (>&2 echo "Could not find shard.yml")
+  CRYSTAL_VERSION="latest"
+fi
 
 docker run \
     --rm \
