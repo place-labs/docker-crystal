@@ -11,6 +11,8 @@ else
   CRYSTAL_VERSION="latest"
 fi
 
+(>&2 echo "⬡ Using crystal:${CRYSTAL_VERSION}")
+
 docker run \
     --rm \
     --volume `pwd`:/data \
