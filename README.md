@@ -1,5 +1,7 @@
 # docker-crystal
 
+![logo](docker-crystal.svg)
+
 Simple shell script for running crystal builds / specs / doc generation inside the official crystal-lang docker images.
 
 ## Installation
