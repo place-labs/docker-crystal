@@ -15,6 +15,7 @@ fi
 
 docker run \
     --rm \
+    --tty \
     --volume `pwd`:/data \
     --workdir /data \
     crystallang/crystal:${CRYSTAL_VERSION} \
