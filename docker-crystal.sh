@@ -30,6 +30,7 @@ fi
 docker run \
     --rm \
     --tty \
+    --interactive \
     --volume `pwd`:/data \
     --workdir /data \
     ${DOCKER_ARGS} \
