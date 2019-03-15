@@ -6,7 +6,7 @@ set -o nounset
 # Get the version of Crystal to be using
 if [ -f shard.yml ]; then
   # Naively extract from shard.yml
-  CRYSTAL_VERSION=`grep 'crystal:' shard.yml | awk '{print $2}'`
+  CRYSTAL_VERSION=`grep -oP 'crystal:\s*\K\S+' shard.yml`
 else
   (>&2 echo "Could not find shard.yml")
   CRYSTAL_VERSION="latest"
