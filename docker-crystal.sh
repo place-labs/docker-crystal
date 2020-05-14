@@ -4,7 +4,9 @@ set -o errexit
 set -o nounset
 
 # Get the version of Crystal to be using
-if [ -f shard.yml ]; then
+if [ -v CRYSTAL_VERSION ]; then
+  CRYSTAL_VERSION=${CRYSTAL_VERSION}
+elif [ -f shard.yml ]; then
   # Naively extract from shard.yml
   CRYSTAL_VERSION=`grep -oP 'crystal:\s*\K\S+' shard.yml || echo "latest"`
 else
