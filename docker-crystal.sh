@@ -8,7 +8,7 @@ if [ -v CRYSTAL_VERSION ]; then
   CRYSTAL_VERSION=${CRYSTAL_VERSION}
 elif [ -f shard.yml ]; then
   # Naively extract from shard.yml
-  CRYSTAL_VERSION=`grep -oP 'crystal:\s*\K\S+' shard.yml || echo "latest"`
+  CRYSTAL_VERSION=`grep -oP 'crystal:\s*"?\K\d+\.\d+\.\d+' shard.yml || echo "latest"`
 else
   (>&2 echo "Could not find shard.yml")
   CRYSTAL_VERSION="latest"
