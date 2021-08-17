@@ -15,27 +15,13 @@ else
 fi
 (>&2 echo "⬡ Using crystal:${CRYSTAL_VERSION}")
 
-declare -a DOCKER_ARGS=("")
-declare -a CRYSTAL_ARGS=("")
-
-# Build any additional args needed for sub-commands
-if [ $# -gt 0 ]; then
-  case "$1" in
-    play)
-      PORT=`echo "$*" | grep -oP "(-p)|(\--port)\s+\K\d+" || echo 8080`
-      DOCKER_ARGS+="--publish ${PORT}:${PORT}"
-      CRYSTAL_ARGS+="--binding 0.0.0.0"
-      ;;
-  esac
-fi
-
 docker run \
     --rm \
     --tty \
     --init \
     --interactive \
+    --network host \
     --volume `pwd`:/data \
     --workdir /data \
-    ${DOCKER_ARGS} \
     crystallang/crystal:${CRYSTAL_VERSION} \
-    crystal $* ${CRYSTAL_ARGS}
+    crystal $*
